@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+*.egg
+
+# Generated output files
+*.csv
+*_plot*.png
+analysis_plot*.png
+diffusion_plot*.png
+
+# Environment
+.env
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+
+# Testing
+.pytest_cache/
+.coverage
+coverage.xml
+
+# Docker
+.dockerignore

@@ -1,0 +1,116 @@
+{
+  "_description": "Configuration file for the diffusion-simulator test suite.",
+  "_instructions": "Add or remove libraries under 'libraries' to automatically generate corresponding import and availability tests. Add or remove scripts under 'scripts' to enable/disable unit tests for that module.",
+
+  "libraries": [
+    {
+      "name": "numpy",
+      "version": ">=1.25",
+      "import_name": "numpy",
+      "test_import": true,
+      "test_functions": ["array", "linspace", "cumprod", "sqrt", "random.normal", "linalg.norm", "mean"]
+    },
+    {
+      "name": "matplotlib",
+      "version": ">=3.7",
+      "import_name": "matplotlib",
+      "test_import": true,
+      "submodules": ["matplotlib.pyplot"]
+    },
+    {
+      "name": "pandas",
+      "version": ">=2.0",
+      "import_name": "pandas",
+      "test_import": true,
+      "test_functions": ["read_csv", "DataFrame.groupby"]
+    }
+  ],
+
+  "scripts": [
+    {
+      "module": "second_fixed",
+      "file": "second_fixed.py",
+      "description": "DDPM forward diffusion + reverse process + visualization",
+      "tests": {
+        "test_beta_schedule": {
+          "description": "Verify beta schedule is linear from 0.02 to 0.5 over 5 steps",
+          "active": true
+        },
+        "test_alpha_bar_calculation": {
+          "description": "Verify alpha_bar = cumprod(1 - beta) is computed correctly",
+          "active": true
+        },
+        "test_forward_diffusion_step": {
+          "description": "Verify forward step: x_t = sqrt(1-beta_t)*x_{t-1} + sqrt(beta_t)*noise",
+          "active": true
+        },
+        "test_reverse_process": {
+          "description": "Verify reverse (denoising) process produces correct shape output",
+          "active": true
+        },
+        "test_snr_calculation": {
+          "description": "Verify SNR = alpha_bar / (1 - alpha_bar)",
+          "active": true
+        },
+        "test_mse_degradation": {
+          "description": "Verify MSE increases monotonically with diffusion steps",
+          "active": true
+        },
+        "test_plot_generation": {
+          "description": "Verify the 3-panel plot is created without errors",
+          "active": true
+        }
+      }
+    },
+    {
+      "module": "run_simulations",
+      "file": "run_simulations.py",
+      "description": "100-run simulation exporting to CSV",
+      "tests": {
+        "test_csv_output_created": {
+          "description": "Verify CSV file is created after running simulations",
+          "active": true
+        },
+        "test_csv_header": {
+          "description": "Verify CSV contains expected column headers",
+          "active": true
+        },
+        "test_csv_row_count": {
+          "description": "Verify CSV has correct number of rows (runs * (steps+1))",
+          "active": true
+        },
+        "test_deterministic_reproducibility": {
+          "description": "Verify same seed produces identical results",
+          "active": true
+        },
+        "test_degradation_values": {
+          "description": "Verify MSE and L2 distance values are non-negative",
+          "active": true
+        }
+      }
+    },
+    {
+      "module": "analyze_simulations",
+      "file": "analyze_simulations.py",
+      "description": "Analysis of simulation CSV with plots",
+      "tests": {
+        "test_csv_loading": {
+          "description": "Verify CSV can be loaded with pandas",
+          "active": true
+        },
+        "test_aggregation_shape": {
+          "description": "Verify groupby aggregation returns correct number of steps",
+          "active": true
+        },
+        "test_expected_mse_computation": {
+          "description": "Verify expected MSE matches theoretical formula",
+          "active": true
+        },
+        "test_analysis_plot_creation": {
+          "description": "Verify the 4-panel analysis plot is created without errors",
+          "active": true
+        }
+      }
+    }
+  ]
+}
