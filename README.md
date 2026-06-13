@@ -1,6 +1,6 @@
 # Diffusion Simulation Project
 
-A Python-based implementation of the **DDPM (Denoising Diffusion Probabilistic Model)** forward diffusion process. Originally built from a buggy script (`second.py`) that was fixed and enhanced into a full diffusion simulation pipeline.
+A Python based implementation of the **DDPM (Denoising Diffusion Probabilistic Model)** forward diffusion process. Originally built from a buggy script (`second.py`) that was fixed and enhanced into a full diffusion simulation pipeline.
 
 ## Project Structure
 
