@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  diffusion-sim:
+    build: .
+    image: diffusion-sim:latest
+    container_name: diffusion-sim
+    volumes:
+      # Mount current directory so output (PNGs, CSVs) persist on the host
+      - .:/app/output
+    # Default command = "all" runs all three scripts in sequence
+    command: all
+    # Override command on the CLI, e.g.:
+    #   docker compose run diffusion-sim second_fixed
+    #   docker compose run diffusion-sim run_simulations
+    #   docker compose run diffusion-sim analyze_simulations
