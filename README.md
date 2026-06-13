@@ -16,7 +16,7 @@ A Python-based implementation of the **DDPM (Denoising Diffusion Probabilistic M
 ├── entrypoint.sh            # Container entrypoint with command dispatch
 ├── docker-compose.yml       # One-command orchestration
 ├── requirements.txt         # Python dependencies
-├── .dockerignore            # Files excluded from Docker build context
+├── .dockerignore            # Files excluded from Docker build context.
 └── README.md                # This file
 ```
 
